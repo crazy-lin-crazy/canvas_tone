@@ -17,13 +17,14 @@ export default {
             isDown:false,
             canvasX:0,
             canvasY:0,
+            canvasEL:{},
         }
         return {data}
     },
     mounted(){
         let me = this
         // init
-
+        me.data.canvasEL = me.$refs.canvas
     },
     methods: {
         init(){
@@ -34,18 +35,18 @@ export default {
             let data = me.data
             data.isDown = true;
             context.beginPath();
-            data.canvasX = e.pageX - selectCanvas.offsetLeft;
-            data.canvasY = e.pageY - selectCanvas.offsetTop;
-            context.moveTo(canvasX, canvasY);
+            data.canvasX = e.pageX - data.canvasEL.offsetLeft;
+            data.canvasY = e.pageY - data.canvasEL.offsetTop;
+            context.moveTo(data.canvasX, data.canvasY);
         },
         draw(e){
             let me = this
             let data = me.data
             if(data.isDown) {
-                data.canvasX = e.pageX - selectCanvas.offsetLeft;
-                data.canvasY = e.pageY - selectCanvas.offsetTop;
+                data.canvasX = e.pageX - data.canvasEL.offsetLeft;
+                data.canvasY = e.pageY - data.canvasEL.offsetTop;
                 context.lineTo(data.canvasX, data.canvasY);
-                context.strokeStyle = selectedColor.value;
+                context.strokeStyle = '#000';
                 context.stroke();
             }
         },
