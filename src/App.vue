@@ -1,7 +1,7 @@
 <template>
     <div id="app">
         <div class="canvas-container">
-            <canvas id="canvas" ref="canvas">
+            <canvas id="canvas" ref="canvas" @mousedown="start" @mouseup="stop" @mousemove="draw">
                 Oops! Canvas not supported in this browser
             </canvas>
         </div>
